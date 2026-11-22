@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抖音×快手矩阵视频项目 · 承接方案汇报</title>
+<style>
+  :root{
+    --ink:#3b2f2a; --ink2:#5c4f48; --muted:#a08d82; --line:#f0e5db;
+    --brand:#f4603a; --brand-deep:#d94b28; --brand-soft:#fdeee9;
+    --peach:#ffb35c; --peach-soft:#fff3e0;
+    --mint:#2aa876; --mint-soft:#e6f5ee;
+    --butter:#f7b32b; --butter-soft:#fef7e6;
+    --bg:#fdf8f2; --card:#ffffff;
+    --shadow:0 2px 4px rgba(150,80,40,.05),0 6px 20px rgba(150,80,40,.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px 90px;}
+
+  /* ===== 封面 ===== */
+  .cover{background:linear-gradient(130deg,#ff8a5c 0%,#f4603a 45%,#e8483f 75%,#c93a5a 100%);border-radius:0 0 26px 26px;color:#fff;padding:64px 40px 56px;position:relative;overflow:hidden;}
+  .cover::before{content:"";position:absolute;right:-60px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,220,150,.22);filter:blur(2px);}
+  .cover::after{content:"";position:absolute;right:90px;bottom:-100px;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.10);}
+  .cover .eyebrow{font-size:12px;letter-spacing:3px;opacity:.85;margin-bottom:14px;}
+  .cover h1{font-size:30px;font-weight:800;letter-spacing:1px;line-height:1.4;}
+  .cover h1 small{display:block;font-size:16px;font-weight:400;opacity:.9;margin-top:8px;letter-spacing:.5px;}
+  .cover .meta{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;}
+  .cover .meta span{font-size:12px;padding:6px 15px;border-radius:99px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(2px);}
+
+  /* ===== 核心提示 ===== */
+  .pitch{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 28px;margin:-36px 24px 0;position:relative;z-index:2;box-shadow:0 10px 34px rgba(180,70,40,.16);border-top:4px solid var(--peach);}
+  .pitch .pv{font-size:15px;line-height:2;}
+  .pitch b{color:var(--brand-deep);}
+
+  /* ===== 顶部数据条 ===== */
+  .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 0;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 12px;box-shadow:var(--shadow);text-align:center;}
+  .stat b{display:block;font-size:20px;color:var(--brand-deep);font-weight:800;letter-spacing:.3px;}
+  .stat span{font-size:11.5px;color:var(--muted);}
+
+  /* ===== 章节 ===== */
+  section{margin-top:58px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+  .sec-no{font-size:13px;font-weight:800;color:#fff;background:linear-gradient(120deg,var(--brand),var(--peach));border-radius:10px;padding:4px 12px;letter-spacing:1px;flex-shrink:0;box-shadow:0 3px 8px rgba(244,96,58,.3);}
+  .sec-head h2{font-size:21px;font-weight:800;letter-spacing:.5px;}
+  .sec-sub{color:var(--muted);font-size:13.5px;margin:2px 0 16px 46px;}
+
+  h3{font-size:16px;margin:26px 0 10px;color:var(--ink);font-weight:700;}
+  h3 .h-dot{display:inline-block;width:9px;height:9px;border-radius:3px;background:linear-gradient(120deg,var(--brand),var(--peach));margin-right:9px;vertical-align:1px;}
+  p{margin:10px 0;color:var(--ink2);}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 26px;margin:16px 0;box-shadow:var(--shadow);}
+  .lead{color:var(--muted);font-size:14px;}
+
+  /* ===== KPI ===== */
+  .grid{display:grid;gap:14px;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);position:relative;}
+  .kpi .lb{font-size:11.5px;color:var(--muted);letter-spacing:1.5px;}
+  .kpi .v{font-size:22px;font-weight:800;margin-top:6px;letter-spacing:.3px;}
+  .kpi .u{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.6;}
+  .kpi::after{content:"";position:absolute;left:20px;bottom:0;width:36px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--peach));}
+  .kpi.k-mint::after{background:linear-gradient(90deg,var(--mint),#7ed6a8);}
+  .kpi.k-butter::after{background:linear-gradient(90deg,var(--butter),#ffd479);}
+
+  /* ===== 表格 ===== */
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:14px 0;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);}
+  th{background:#fdf1e7;text-align:left;padding:12px 16px;font-weight:700;color:#8a4a30;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.5px;}
+  td{padding:12px 16px;border-bottom:1px solid #faf3ec;vertical-align:top;color:var(--ink2);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fff9f3;}
+  tr.total td{background:var(--brand-soft);font-weight:800;color:var(--brand-deep);}
+  .num{font-variant-numeric:tabular-nums;text-align:center;}
+  .tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:99px;font-weight:700;margin-left:6px;vertical-align:1px;}
+  .tag-blue{background:var(--peach-soft);color:#b06a10;}
+  .tag-gold{background:var(--brand-soft);color:var(--brand-deep);}
+  .table-sm{font-size:12.5px;}
+  .table-sm th,.table-sm td{padding:9px 12px;}
+  .table-sm td:first-child{font-weight:700;color:var(--ink);white-space:nowrap;}
+  .pri{display:inline-block;font-size:11px;padding:2px 9px;border-radius:6px;font-weight:800;white-space:nowrap;}
+  .pri-p0{background:#d4402b;color:#fff;}
+  .pri-p1{background:#f9a15e;color:#fff;}
+  .pri-p2{background:var(--peach-soft);color:#b06a10;}
+  .pri-wait{background:#f6f1ec;color:var(--muted);}
+
+  .quote{border-left:4px solid var(--peach);background:linear-gradient(90deg,#fff7ea,#fff 85%);padding:16px 20px;border-radius:0 14px 14px 0;margin:18px 0;font-size:14px;color:var(--ink2);}
+
+  ul{padding-left:22px;margin:8px 0;}
+  li{margin:8px 0;color:var(--ink2);}
+  li b{color:var(--ink);}
+
+  /* ===== 图表：柱状 ===== */
+  .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0;}
+  .chart-box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 20px 16px;box-shadow:var(--shadow);}
+  .chart-t{font-size:14.5px;font-weight:800;}
+  .chart-u{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .bars{display:flex;align-items:flex-end;gap:10px;height:158px;border-bottom:2px solid #f3ded0;margin:24px 2px 0;padding:0 2px;}
+  .bar-col{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-width:0;}
+  .bar-val{font-size:12px;font-weight:800;color:var(--ink);margin-bottom:6px;white-space:nowrap;letter-spacing:.2px;}
+  .bar-fill{width:100%;border-radius:8px 8px 0 0;box-shadow:inset 0 -3px 0 rgba(0,0,0,.03);}
+  .axis{display:flex;gap:10px;margin:9px 2px 0;padding:0 2px;}
+  .axis div{flex:1;text-align:center;font-size:11.5px;color:var(--muted);min-width:0;}
+  .chart-foot{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;}
+
+  /* ===== 图表：100% 堆叠 ===== */
+  .stack{display:flex;height:48px;border-radius:12px;overflow:hidden;margin:16px 0 10px;}
+  .stack .s1{width:78%;background:linear-gradient(90deg,#ffdcc0,#ffb87e);display:flex;align-items:center;justify-content:center;font-weight:800;color:#8a4a1e;font-size:13px;}
+  .stack .s2{width:22%;background:linear-gradient(90deg,#f4603a,#d94b28);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:13px;}
+
+  /* ===== 高亮提示卡 ===== */
+  .spot{background:linear-gradient(120deg,#fff5e9,#fff 70%);border:1px solid #f8e1c9;border-left:5px solid var(--butter);border-radius:0 16px 16px 0;padding:20px 24px;margin:18px 0;box-shadow:var(--shadow);}
+  .spot .st{font-weight:800;font-size:16px;color:var(--ink);}
+  .spot p{font-size:13.5px;margin-top:6px;}
+
+  /* ===== 节点日历 ===== */
+  .cal{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;margin:16px 0 4px;}
+  .cal .m{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 5px;min-height:122px;box-shadow:var(--shadow);}
+  .cal .m.hot{border-color:#f4a584;background:#fffaf4;}
+  .cal .m .mt{font-size:11px;font-weight:800;color:var(--brand-deep);text-align:center;padding-bottom:5px;border-bottom:1px dashed var(--line);margin-bottom:6px;}
+  .cal .m .n{display:block;font-size:10px;border-radius:5px;padding:2px 4px;margin:4px 0;line-height:1.35;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .n-p0{background:#d4402b;color:#fff;}
+  .n-p1{background:#f9a15e;color:#fff;}
+  .n-p2{background:#ffe9d2;color:#9c5316;}
+
+  /* ===== 图例 / 胶囊 ===== */
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;}
+  .chip{background:#fdf3ec;border:1px solid #f7e2d3;border-radius:8px;padding:4px 11px;font-size:11.5px;color:#a4562f;font-weight:700;}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0;font-size:11.5px;color:var(--muted);}
+  .legend span{background:#faf5f0;border-radius:6px;padding:3px 9px;}
+
+  /* ===== 图表：里程碑时间轴 ===== */
+  .tl{position:relative;margin:24px 0 4px;}
+  .tl::before{content:"";position:absolute;left:96px;top:14px;bottom:26px;width:2px;background:linear-gradient(180deg,#ffd2b6,#f4603a);}
+  .tl-item{display:grid;grid-template-columns:96px 1fr;position:relative;padding-bottom:24px;}
+  .tl-when{text-align:right;padding-right:22px;padding-top:12px;font-weight:800;font-size:12.5px;color:var(--ink2);}
+  .tl-body{padding:8px 0 0 30px;position:relative;}
+  .tl-dot{position:absolute;left:-7px;top:19px;width:14px;height:14px;border-radius:50%;background:var(--brand);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--brand);}
+  .tl-title{font-weight:800;font-size:15.5px;}
+  .tl-desc{font-size:13px;color:var(--ink2);margin-top:3px;line-height:1.75;}
+
+  /* ===== 流程 ===== */
+  .flow{display:flex;gap:0;flex-wrap:nowrap;align-items:stretch;margin:20px 0 6px;}
+  .flow .step{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;position:relative;box-shadow:var(--shadow);min-width:0;}
+  .flow .step .ic{font-size:19px;margin-bottom:4px;}
+  .flow .step .t{font-weight:700;font-size:13.5px;color:var(--ink);}
+  .flow .step .d{font-size:11.5px;color:var(--muted);margin-top:3px;}
+  .flow .arr{align-self:center;color:#eeb59a;font-size:15px;padding:0 5px;flex-shrink:0;}
+  .flow-note{font-size:12.5px;color:var(--brand-deep);background:var(--brand-soft);border-radius:99px;padding:7px 18px;text-align:center;margin-top:12px;font-weight:600;}
+  .flow-3 .step{padding:16px 14px;text-align:left;}
+  .flow-3 .step .ic{display:inline-block;margin-right:6px;}
+
+  /* ===== 三卡承诺 ===== */
+  .promise{border-top:4px solid transparent;}
+  .promise.p-mint{border-top-color:var(--mint);}
+  .promise.p-mint .v{color:var(--mint);}
+  .promise.p-brand{border-top-color:var(--brand);}
+  .promise.p-brand .v{color:var(--brand-deep);}
+  .promise.p-butter{border-top-color:var(--butter);}
+  .promise.p-butter .v{color:#b07d10;}
+
+  footer{margin-top:64px;padding:22px 26px;background:var(--card);border:1px solid var(--line);border-radius:16px;font-size:12.5px;color:var(--muted);text-align:center;box-shadow:var(--shadow);}
+
+  @media(max-width:700px){
+    .g3,.chart-row,.stat-strip{grid-template-columns:1fr 1fr;}
+    .cover{padding:44px 26px 44px;}
+    .flow{flex-wrap:wrap;}
+    .flow .step{flex:1 1 44%;}
+    .flow .arr{display:none;}
+    .tl::before{left:64px;}
+    .tl-item{grid-template-columns:64px 1fr;}
+    .tl-when{padding-right:14px;}
+    .table-sm{font-size:11.5px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">🔥 矩阵内容营销 · 承接方案汇报</div>
+  <h1>抖音 × 快手矩阵视频项目
+    <small>内容策略 · 生产体系 · 团队配置 · 协作机制</small>
+  </h1>
+  <div class="meta">
+    <span>⚡ 结构化精品生产</span>
+    <span>🚀 爆款专项机制</span>
+    <span>🔍 回搜词全链路</span>
+    <span>📈 数据闭环运营</span>
+  </div>
+</div>
+
+<div class="pitch">
+  <div class="pv">一句话概括我们的打法：<b>不走「堆量碰运气」的路线，走「结构化精品生产 + 爆款专项机制」的路线。</b>以达标率为第一运营指标，以爆款命中率建设为长期壁垒，用数据闭环持续校准选题与钩子，让每一批产能的结算效率<b>可预期、可复盘、可复制</b>。</div>
+</div>
+
+<div class="wrap">
+
+<div class="stat-strip">
+  <div class="stat"><b>15 条/天</b><span>试点起步产能</span></div>
+  <div class="stat"><b>100+ 条/天</b><span>稳态交付产能</span></div>
+  <div class="stat"><b>4~5 人</b><span>精干团队启动</span></div>
+  <div class="stat"><b>7 天</b><span>数据升档闸门</span></div>
+</div>
+
+<!-- ============ 1 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">01</span><h2>我们对项目的理解</h2></div>
+  <div class="sec-sub">先讲清楚我们对生意的判断，策略都从这里长出来</div>
+  <div class="card">
+    <p>本项目是通过抖音、快手矩阵视频进行种草内容铺设，在视频中埋入回搜关键词，引导用户回流至小红书完成搜索与转化的内容营销项目。结算以互动档位为依据，多平台同内容数据独立累计。</p>
+    <p>基于这个结算规则，我们判断项目的核心竞争力不在产量，而在三个环节：</p>
+    <div class="grid g3">
+      <div class="kpi"><div class="lb">核心竞争力 · 一</div><div class="v">达标率</div><div class="u">每条内容稳定越过结算底线，决定单位产能的产出效率</div></div>
+      <div class="kpi k-butter"><div class="lb">核心竞争力 · 二</div><div class="v">爆款命中率</div><div class="u">高档位内容决定整体结算金额，靠机制而非运气</div></div>
+      <div class="kpi k-mint"><div class="lb">核心竞争力 · 三</div><div class="v">回搜有效性</div><div class="u">视频价值在小红书回搜转化，埋词与数据闭环不可缺席</div></div>
+    </div>
+    <p class="lead" style="margin-top:16px;">这三个环节，正是我们承接方案中资源配置和流程设计的全部重心。</p>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">02</span><h2>核心策略：四条主线</h2></div>
+  <div class="sec-sub">每条主线都对应上面三个竞争力环节中的一个或多个</div>
+
+  <h3><span class="h-dot"></span>主线一 · 双内容线并行：托底盘 + 冲爆款</h3>
+  <div class="card">
+    <p>我们将内容分为两条明确的产线，分别配置不同的生产标准与审核强度：</p>
+    <div class="stack">
+      <div class="s1">基础盘内容 · 约 78%</div>
+      <div class="s2">冲刺内容 · 约 22%</div>
+    </div>
+    <p class="lead">同样一批产能，两条产线走不同的生产与审核流程——资源向高档位内容倾斜，但基础盘的稳定性不受影响。</p>
+    <table>
+      <thead><tr><th>产线</th><th>目标</th><th>生产方式</th><th class="num">占比</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>基础盘内容</b><span class="tag tag-blue">稳达标</span></td>
+          <td>稳定越过结算底线，保证产能的基础结算效率</td>
+          <td>结构化模板 + 标准化选题，流程化批量生产</td>
+          <td class="num"><b>75~80%</b></td>
+        </tr>
+        <tr>
+          <td><b>冲刺内容</b><span class="tag tag-gold">冲高档位</span></td>
+          <td>争夺 1w / 5w / 10w+ 档位，拉动整体结算金额</td>
+          <td>选题竞标制 + 钩子人工精修 + 精剪后制</td>
+          <td class="num"><b>20~25%</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="lead">两条产线的审核标准不同：冲刺内容 100% 由资深编导终审后才可发布；基础盘执行抽检制，保障效率。</p>
+  </div>
+
+  <h3><span class="h-dot"></span>主线二 · 结构化选题体系：不靠灵感，靠方法</h3>
+  <div class="card">
+    <p>达标率和爆款率的上限，在选题阶段就已决定大半。我们建立三层选题漏斗：</p>
+    <ul>
+      <li><b>选题池</b>：围绕回搜词表和产品场景，持续扩充候选题库，按「回搜意图强度 × 内容承载力」双维度打分；</li>
+      <li><b>钩子库</b>：沉淀经过数据验证的开场钩子结构（前 3 秒留人），按场景归类，新内容优先复用已验证结构；</li>
+      <li><b>复盘回流</b>：每批数据回收后，达标/未达标、爆款/平款的选题特征全部归档入库，反哺下一轮选题。</li>
+    </ul>
+  </div>
+
+  <h3><span class="h-dot"></span>主线三 · 回搜词全链路管理</h3>
+  <div class="card">
+    <p>回搜词是本项目区别于普通矩阵项目的关键，我们设置专人负责：</p>
+    <ul>
+      <li>与甲方对齐回搜词表、埋设规范与回搜数据口径；</li>
+      <li>建立词库分层（品牌词 / 场景词 / 攻略词），按回搜效果动态调整埋词优先级；</li>
+      <li>每条内容发布前执行埋词合规检查，确保关键词出现位置、频次符合规范，且不破坏内容原生感。</li>
+    </ul>
+  </div>
+
+  <h3><span class="h-dot"></span>主线四 · 数据闭环：日报 + 周复盘</h3>
+  <div class="card">
+    <p>建立三张运营看板：<b>达标率日报</b>（按批次、按平台、按档位）、<b>爆款候选追踪</b>（发布后黄金 48 小时的数据监控与加热决策）、<b>结算对账表</b>（T+10 结算周期逐单核对）。</p>
+    <p class="lead">数据不是用来汇报的，是用来改下一条内容的。</p>
+  </div>
+</section>
+
+<!-- ============ 3 内容方向测试（新增） ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">03</span><h2>内容方向测试</h2></div>
+  <div class="sec-sub">不押单一方向，小批量多方向并行试，让数据决定把产能加给谁</div>
+
+  <div class="card">
+    <p>试点期不为「哪个方向会火」下注，先铺开十条内容线做同周期测试。每条线只讲一类具体场景，不拍大词、不铺泛话题，方便把完播、互动与回搜表现归因到具体方向。</p>
+    <table class="table-sm">
+      <thead><tr><th style="width:88px;">内容线</th><th>选题逻辑</th><th class="num" style="width:78px;">优先级</th></tr></thead>
+      <tbody>
+        <tr><td>生活技能</td><td>把「原来还能这样」拍出来：换季收纳、厨房动线、手机修图、省时早餐</td><td class="num"><span class="pri pri-p2">P2</span></td></tr>
+        <tr><td>出行攻略</td><td>绑节点，只讲一条能照着走的：周末 2 小时路线、错峰时间、city walk、机场流程</td><td class="num"><span class="pri pri-wait">备选</span></td></tr>
+        <tr><td>职场效率</td><td>不拍大词，只给能抄走的零件：周报三行结构、一句话自我介绍、PPT 对齐、Excel 单场景</td><td class="num"><span class="pri pri-p0">P0</span></td></tr>
+        <tr><td>学习考试</td><td>顺着考试日历倒推：考公考研时间线、背单词排法、错题本、家长辅导</td><td class="num"><span class="pri pri-p1">P1</span></td></tr>
+        <tr><td>消费避坑</td><td>拿自己踩过的坑做对比：家电参数、母婴闲置、美妆雷区、租房合同</td><td class="num"><span class="pri pri-p2">P2</span></td></tr>
+        <tr><td>本地生活</td><td>一条只讲一个本地人才知道的：办事窗口、免排队时段、放号时间，一城一词</td><td class="num"><span class="pri pri-wait">备选</span></td></tr>
+        <tr><td>工具与 APP</td><td>专挑藏得深、一用就爽的：隐藏功能、AI 工具某个用法，只给效果不给路径</td><td class="num"><span class="pri pri-wait">备选</span></td></tr>
+        <tr><td>健康养生</td><td>只讲日常怎么应对、什么时候该去问大白：颈椎、睡眠、减脂餐，不碰诊断用药</td><td class="num"><span class="pri pri-wait">备选</span></td></tr>
+        <tr><td>情绪共鸣</td><td>打工人、学生党的一个具体瞬间，一个场景一句话，不硬塞词</td><td class="num"><span class="pri pri-wait">备选</span></td></tr>
+        <tr><td>明星娱乐</td><td>剧综名场面、同款穿搭、综艺抓马时刻</td><td class="num"><span class="pri pri-wait">备选</span></td></tr>
+      </tbody>
+    </table>
+    <div class="legend">
+      <span><b>P0</b> 首轮主测</span>
+      <span><b>P1</b> 次轮跟进</span>
+      <span><b>P2</b> 补充测试</span>
+      <span><b>备选</b> 观察池，按节点或数据表现择机启动</span>
+    </div>
+  </div>
+
+  <div class="spot">
+    <div class="st">🎯 节点集中发力</div>
+    <p>关注节假日热点、营销事件热点（圣诞节、元旦、年末盘点等），把产能压在节点攻略上。这类内容在窗口期内的完播与互动明显更好，也更容易出高赞内容。剩下的产能继续跑日常内容方向测试，保证更新密度和账号权重。</p>
+  </div>
+
+  <h3><span class="h-dot"></span>值得跟进的节点日历（2026.12 – 2027.11）</h3>
+  <div class="card">
+    <div class="cal">
+      <div class="m hot"><div class="mt">12月</div><span class="n n-p0">年末盘点</span><span class="n n-p0">跨年·元旦</span><span class="n n-p1">圣诞节</span><span class="n n-p1">考研冲刺</span><span class="n n-p2">双12</span></div>
+      <div class="m"><div class="mt">1月</div><span class="n n-p1">元旦假期</span><span class="n n-p1">春运启动</span><span class="n n-p2">年货节</span><span class="n n-p2">寒假开启</span></div>
+      <div class="m hot"><div class="mt">2月</div><span class="n n-p0">春节</span><span class="n n-p1">开学季</span><span class="n n-p2">情人节</span><span class="n n-p2">元宵节</span></div>
+      <div class="m hot"><div class="mt">3月</div><span class="n n-p0">女神节</span><span class="n n-p1">春游踏青</span><span class="n n-p2">315</span></div>
+      <div class="m"><div class="mt">4月</div><span class="n n-p1">清明踏青</span><span class="n n-p1">春招</span></div>
+      <div class="m hot"><div class="mt">5月</div><span class="n n-p0">五一</span><span class="n n-p1">520</span><span class="n n-p2">母亲节</span></div>
+      <div class="m hot"><div class="mt">6月</div><span class="n n-p0">618</span><span class="n n-p1">毕业季</span><span class="n n-p1">端午</span></div>
+      <div class="m"><div class="mt">7月</div><span class="n n-p1">暑假</span><span class="n n-p2">亲子游</span></div>
+      <div class="m"><div class="mt">8月</div><span class="n n-p1">七夕</span><span class="n n-p2">开学预备</span></div>
+      <div class="m hot"><div class="mt">9月</div><span class="n n-p0">开学季</span><span class="n n-p1">中秋</span><span class="n n-p1">秋招</span></div>
+      <div class="m hot"><div class="mt">10月</div><span class="n n-p0">国庆</span><span class="n n-p2">重阳</span></div>
+      <div class="m hot"><div class="mt">11月</div><span class="n n-p0">双11</span></div>
+    </div>
+    <div class="legend">
+      <span><b>P0</b> 全力压产能，提前锁定档期</span>
+      <span><b>P1</b> 常规跟进，占正常排期</span>
+      <span><b>P2</b> 机会型补充，视数据临时加</span>
+      <span>橙框月份 = 含 P0 节点的高热月份</span>
+    </div>
+  </div>
+
+  <h3><span class="h-dot"></span>近 4 个月节点作战表</h3>
+  <div class="card">
+    <table class="table-sm">
+      <thead><tr><th style="width:118px;">节点</th><th style="width:96px;">窗口期</th><th style="width:104px;">备稿·埋词</th><th>主打内容线</th><th>回搜词方向</th></tr></thead>
+      <tbody>
+        <tr><td>双12 + 年末盘点 <span class="pri pri-p2">P2</span><span class="pri pri-p0">P0</span></td><td>12/1 – 12/25</td><td>现在 – 11月底</td><td>消费避坑 / 职场效率</td><td>双12避坑清单、年终总结模板</td></tr>
+        <tr><td>圣诞 · 跨年 · 元旦 <span class="pri pri-p0">P0</span></td><td>12/10 – 1/3</td><td>12月上旬</td><td>出行攻略 / 情绪共鸣 / 生活技能</td><td>跨年去哪、元旦三天路线</td></tr>
+        <tr><td>春节 · 年货节 · 春运 <span class="pri pri-p0">P0</span></td><td>1/中 – 2/中</td><td>12月中 – 1月初</td><td>生活技能 / 出行攻略 / 消费避坑</td><td>年货清单、年夜饭、返乡攻略</td></tr>
+        <tr><td>开学季 <span class="pri pri-p1">P1</span></td><td>2/下 – 3/上</td><td>2月初</td><td>学习考试 / 职场效率</td><td>开学收心、新学期计划</td></tr>
+        <tr><td>女神节 + 315 <span class="pri pri-p0">P0</span></td><td>3/1 – 3/15</td><td>2月中</td><td>消费避坑 / 健康养生</td><td>女神节避坑、通用维权常识</td></tr>
+      </tbody>
+    </table>
+    <p class="lead" style="margin-top:10px;">＊ 节点内容提前 2~3 周备稿并完成埋词，窗口期前 3~5 天开始发布，吃满完整流量周期；315 相关内容只讲通用避坑常识，不点名具体品牌。</p>
+  </div>
+
+  <h3><span class="h-dot"></span>测试怎么跑：三步闭环</h3>
+  <div class="flow flow-3">
+    <div class="step"><div class="t"><span class="ic">🧪</span>小批量并行</div><div class="d">每条内容线各出 3~5 条，同周期投放，避免样本互相干扰</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="t"><span class="ic">📊</span>三口径回收</div><div class="d">完播 / 互动 / 回搜，按内容线归档，横向对比</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="t"><span class="ic">🚀</span>优胜加码</div><div class="d">跑出来的方向进模板库加产能，落选方向停更，名额让给新方向</div></div>
+  </div>
+  <div class="flow-note">🔁 每轮测试结论回流选题池与钩子库，方向不是拍脑袋定的，是滚出来的</div>
+
+  <h3><span class="h-dot"></span>阶段交付与回搜效率目标</h3>
+  <table class="table-sm">
+    <thead><tr><th>阶段</th><th>周期</th><th class="num">日内容条</th><th class="num">月千赞以上</th><th class="num">回搜 / 万次播放</th><th>阶段交付</th></tr></thead>
+    <tbody>
+      <tr><td>试跑</td><td>第 1–2 周</td><td class="num">15</td><td class="num">40–55</td><td class="num">≥ 5</td><td>四环节跑通、回搜基线与日报成型</td></tr>
+      <tr><td>校准</td><td>第 3–4 周</td><td class="num">30</td><td class="num">100–140</td><td class="num">≥ 5</td><td>模板定型、钩子库 v1、达标率爬坡</td></tr>
+      <tr><td>放量</td><td>第 5–6 周</td><td class="num">50</td><td class="num">180–240</td><td class="num">≥ 6</td><td>双平台满发、审核过渡到抽检</td></tr>
+      <tr><td>爬坡</td><td>第 7–8 周</td><td class="num">75</td><td class="num">280–340</td><td class="num">≥ 6</td><td>爆款产线成型、周复盘机制</td></tr>
+      <tr><td>稳态</td><td>第 9 周起</td><td class="num">100+</td><td class="num">400+</td><td class="num">≥ 6</td><td>抽检为主、按数据决定是否上探</td></tr>
+    </tbody>
+  </table>
+  <p class="lead">＊ 表中为阶段目标区间，按各阶段产能与达标结构估算，非结算承诺值；回搜效率口径以甲方回传数据为准。</p>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">04</span><h2>生产流程与质量控制</h2></div>
+  <div class="sec-sub">六个环节，三个质量闸门</div>
+  <div class="flow">
+    <div class="step"><div class="ic">🎯</div><div class="t">选题竞标</div><div class="d">题库评分 + 编导提案</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="ic">✍️</div><div class="t">脚本创作</div><div class="d">钩子人工主笔</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="ic">⚡</div><div class="t">制作生成</div><div class="d">AI 辅助提效</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="ic">🎬</div><div class="t">精剪后制</div><div class="d">爆款内容全精修</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="ic">📡</div><div class="t">双平台发布</div><div class="d">差异化适配</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div class="ic">📊</div><div class="t">数据回传</div><div class="d">结算对账闭环</div></div>
+  </div>
+  <div class="flow-note">🛡 人工闸门：脚本钩子终审 · 爆款候选 100% 终审 · 发布前合规卡控</div>
+  <div class="card">
+    <ul>
+      <li><b>平台差异化</b>：内容母版以抖音调性为准（抖音为结算主力），快手做标题、封面、节奏的本地化适配，不做简单搬运；</li>
+      <li><b>合规前置</b>：内容涉及健康/功效类表述时，执行发布前合规卡控；互动数据真实性红线（赞播比）纳入发布后监控，杜绝因数据异常导致整批结算风险；</li>
+      <li><b>AI 提效定位</b>：AI 用于素材生成、初剪、封面、字幕等环节的效率提升，脚本钩子与爆款终审等关键判断环节由人工把关——<b>效率让位于质量，是我们对达标率的承诺方式。</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">05</span><h2>产能爬坡节奏：先验证，再放量</h2></div>
+  <div class="sec-sub">每一档的放量，都以前一档的数据达标为前提</div>
+  <p class="lead">我们不建议一上来铺满产能。先以小规模试点跑通全链路、建立自己的达标率基线，再按周扩档——产能可以慢慢加，但达标率必须一直在线。</p>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <div class="chart-t">日均内容条数</div>
+      <div class="chart-u">单位：条 / 天　柱高取阶段目标值</div>
+      <div class="bars">
+        <div class="bar-col"><div class="bar-val">15</div><div class="bar-fill" style="height:18%;background:#ffd6b0;"></div></div>
+        <div class="bar-col"><div class="bar-val">30</div><div class="bar-fill" style="height:33%;background:#ffbb85;"></div></div>
+        <div class="bar-col"><div class="bar-val">50</div><div class="bar-fill" style="height:50%;background:#fb9460;"></div></div>
+        <div class="bar-col"><div class="bar-val">75</div><div class="bar-fill" style="height:70%;background:#f4603a;"></div></div>
+        <div class="bar-col"><div class="bar-val">100+</div><div class="bar-fill" style="height:92%;background:#d4402b;"></div></div>
+      </div>
+      <div class="axis"><div>试点</div><div>校准</div><div>放量</div><div>爬坡</div><div>稳态</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-t">月度千赞以上内容（目标）</div>
+      <div class="chart-u">单位：条 / 月　柱高取区间中值</div>
+      <div class="bars">
+        <div class="bar-col"><div class="bar-val">40–55</div><div class="bar-fill" style="height:16%;background:#ffd6b0;"></div></div>
+        <div class="bar-col"><div class="bar-val">100–140</div><div class="bar-fill" style="height:32%;background:#ffbb85;"></div></div>
+        <div class="bar-col"><div class="bar-val">180–240</div><div class="bar-fill" style="height:54%;background:#fb9460;"></div></div>
+        <div class="bar-col"><div class="bar-val">280–340</div><div class="bar-fill" style="height:74%;background:#f4603a;"></div></div>
+        <div class="bar-col"><div class="bar-val">400+</div><div class="bar-fill" style="height:92%;background:#d4402b;"></div></div>
+      </div>
+      <div class="axis"><div>试点</div><div>校准</div><div>放量</div><div>爬坡</div><div>稳态</div></div>
+      <div class="chart-foot">＊ 阶段性目标区间，按各阶段产能与达标结构估算，非结算承诺值</div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:24px 26px 8px;">
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-when">第 1–2 周</div>
+        <div class="tl-body"><div class="tl-dot"></div>
+          <div class="tl-title">试跑：把四个环节跑通</div>
+          <div class="tl-desc">选题、脚本、剪辑、发布回传全部跑顺，建立回搜基线、达标率日报与结算对账三张表。</div>
+          <div class="chips"><span class="chip">15 条/天</span><span class="chip">完成首个 T+10 结算核对</span><span class="chip">建三张看板</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">第 3–4 周</div>
+        <div class="tl-body"><div class="tl-dot"></div>
+          <div class="tl-title">校准：模板定型，达标率爬坡</div>
+          <div class="tl-desc">把跑出来的有效结构沉淀成标准模板，换素材不换骨架；钩子库完成第一版沉淀。</div>
+          <div class="chips"><span class="chip">30 条/天</span><span class="chip">达标率连续 7 天 ≥35%</span><span class="chip">钩子库 v1</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">第 5–6 周</div>
+        <div class="tl-body"><div class="tl-dot"></div>
+          <div class="tl-title">放量：双平台稳定输出</div>
+          <div class="tl-desc">抖音、快手同步满发，审核从双审过渡到抽检，产出首批 1w+ 内容。</div>
+          <div class="chips"><span class="chip">50 条/天</span><span class="chip">达标率 ≥40%</span><span class="chip">首批 1w+</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">第 7–8 周</div>
+        <div class="tl-body"><div class="tl-dot"></div>
+          <div class="tl-title">爬坡：爆款产线成型</div>
+          <div class="tl-desc">冲刺内容独立产线运转，每周复盘按数据微调结构，稳定产出 5w+ 内容。</div>
+          <div class="chips"><span class="chip">75 条/天</span><span class="chip">达标率稳定 ≥40%</span><span class="chip">周 2~3 条 5w+</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">第 9 周起</div>
+        <div class="tl-body"><div class="tl-dot"></div>
+          <div class="tl-title">稳态：可复制、可上探</div>
+          <div class="tl-desc">爆款进入稳定输出，产能对标头部水平；是否继续上探，看前面跑出来的数据再决定。</div>
+          <div class="chips"><span class="chip">100+ 条/天</span><span class="chip">持续达标</span><span class="chip">按甲方需求扩产</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote">
+    <b>升档与熔断机制</b>：达标率连续 7 天达到升档线才扩产；一旦连续跌破当前档位的红线，主动退回上一档并整改流程，不带病放量——这是对我们自己定的纪律，也是对甲方结算效率的保障。
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">06</span><h2>团队配置</h2></div>
+  <div class="sec-sub">试点期精干启动，稳态期补齐爆款与数据职能，随升档节奏弹性扩编</div>
+
+  <div class="chart-box" style="margin:16px 0;">
+    <div class="chart-t">人力随节奏弹性扩编</div>
+    <div class="chart-u">单位：人　柱高取阶段配置中值</div>
+    <div class="bars" style="height:130px;">
+      <div class="bar-col"><div class="bar-val">4~5</div><div class="bar-fill" style="height:32%;background:#ffd6b0;"></div></div>
+      <div class="bar-col"><div class="bar-val">6~7</div><div class="bar-fill" style="height:48%;background:#ffbb85;"></div></div>
+      <div class="bar-col"><div class="bar-val">8~9</div><div class="bar-fill" style="height:64%;background:#fb9460;"></div></div>
+      <div class="bar-col"><div class="bar-val">10~11</div><div class="bar-fill" style="height:80%;background:#f4603a;"></div></div>
+      <div class="bar-col"><div class="bar-val">11~12</div><div class="bar-fill" style="height:92%;background:#d4402b;"></div></div>
+    </div>
+    <div class="axis"><div>试点</div><div>校准</div><div>放量</div><div>爬坡</div><div>稳态</div></div>
+    <div class="chart-foot">＊ 扩编与升档闸门绑定：数据不达标，人数不先加</div>
+  </div>
+
+  <table>
+    <thead><tr><th>角色</th><th class="num">试点期</th><th class="num">稳态期</th><th>职责重点</th></tr></thead>
+    <tbody>
+      <tr><td><b>项目主编导</b></td><td class="num">1</td><td class="num">1</td><td>选题终审、钩子把关、爆款判断——内容质量的最终责任人</td></tr>
+      <tr><td><b>内容编导</b></td><td class="num">1</td><td class="num">3</td><td>脚本创作、冲刺内容精修</td></tr>
+      <tr><td><b>制作 / 剪辑</b></td><td class="num">1</td><td class="num">3</td><td>AI 辅助批量制作 + 爆款精剪小组</td></tr>
+      <tr><td><b>运营与数据</b></td><td class="num">1</td><td class="num">2</td><td>发布管理、达标率日报、结算对账；专人负责回搜词与回传</td></tr>
+      <tr><td><b>质检与合规</b></td><td class="num">0.5</td><td class="num">1</td><td>发布前合规卡控、数据真实性监控</td></tr>
+      <tr><td><b>项目经理</b></td><td class="num">0.5（兼）</td><td class="num">1</td><td>甲方对接、周报、节奏与闸门管理</td></tr>
+      <tr class="total"><td>合计</td><td class="num">4~5 人</td><td class="num">11~12 人</td><td>按升档节奏同步扩编</td></tr>
+    </tbody>
+  </table>
+  <div class="card">
+    <h3 style="margin-top:0;"><span class="h-dot"></span>三个关键机制</h3>
+    <ul>
+      <li><b>爆款专项小组</b>：稳态期设置专职精剪与冲刺内容编制，不承担基础盘产能，确保高档位内容获得最优先的人力与时间资源；</li>
+      <li><b>回搜词专人负责制</b>：埋词质量直接影响项目最终价值，设专人管理词库与回传核对，不与常规运营混岗；</li>
+      <li><b>主编导一票否决</b>：所有冲刺内容与存疑内容，主编导有一票否决权，确保交付给平台的内容质量下限。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">07</span><h2>与甲方的协作机制</h2></div>
+  <div class="sec-sub">透明是对齐的前提</div>
+  <div class="card">
+    <ul>
+      <li><b>周报</b>：每周输出产能、达标率、档位分布、爆款案例复盘、下周计划；</li>
+      <li><b>对账</b>：按 T+10 结算周期逐单核对，主动提供结算追踪明细，减少双方核对成本；</li>
+      <li><b>启动前需对齐三项资料</b>：① 回搜词表与埋设规范；② 回搜数据回传口径与模板；③ 结算规则细节确认（档位计价方式、数据回传渠道）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-no">08</span><h2>我们的承诺</h2></div>
+  <div class="sec-sub">写进方案，也写进考核</div>
+  <div class="grid g3">
+    <div class="kpi promise p-mint">
+      <div class="lb">质量承诺</div>
+      <div class="v">达标率优先</div>
+      <div class="u">不以牺牲达标率换取产能数字，放量节奏服从数据表现</div>
+    </div>
+    <div class="kpi promise p-brand">
+      <div class="lb">透明承诺</div>
+      <div class="v">数据全公开</div>
+      <div class="u">达标率日报 + 结算对账明细对甲方完全透明，接受随时抽查</div>
+    </div>
+    <div class="kpi promise p-butter">
+      <div class="lb">合规承诺</div>
+      <div class="v">红线零容忍</div>
+      <div class="u">内容合规与数据真实性双重卡控，杜绝整批结算风险</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  🌶 本方案为汇报版，具体产能数字与排期将在合同确认后与甲方共同敲定。
+</footer>
+
+</div>
+</body>
+</html>
